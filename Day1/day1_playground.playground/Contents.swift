@@ -2,10 +2,11 @@
 
 import UIKit
 
-var captchaInput: String   = "1122"
+var captchaInput: String   = "1234"
 var numberArray: [Int] = []
 var firstNumber: Int = 0
 var nextNumber: Int = 0
+var matchArray: [Int] = []
 
 func solveCaptcha(input : String) {
     
@@ -19,6 +20,7 @@ func solveCaptcha(input : String) {
     // Compare each number in the array
     // to the next number in the array
     compareNext(numberArray)
+    getMatchSum(matchArray)
 }
 
 func compareNext(_ arrayOfNumbers: [Int]) {
@@ -38,10 +40,16 @@ func compareNext(_ arrayOfNumbers: [Int]) {
         
         if firstNumber == nextNumber {
             print("Match")
+            matchArray.append(firstNumber)
         } else {
             print("No Match")
         }
     }
+}
+
+func getMatchSum(_ arrayOfNumbers: [Int]) {
+    let sumedArr = arrayOfNumbers.reduce(0, +)
+    print("Captcha Solution: \(sumedArr)")
 }
 
 // Solve the Captcha
