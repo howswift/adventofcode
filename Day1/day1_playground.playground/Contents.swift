@@ -2,8 +2,10 @@
 
 import UIKit
 
-var captchaInput : String   = "1122334455"
-var numberArray : [Int] = []
+var captchaInput: String   = "1122"
+var numberArray: [Int] = []
+var firstNumber: Int = 0
+var nextNumber: Int = 0
 
 func solveCaptcha(input : String) {
     
@@ -19,11 +21,30 @@ func solveCaptcha(input : String) {
     compareNext(numberArray)
 }
 
-func compareNext(_ arrayOfNumbers : [Int]) {
-    for index in arrayOfNumbers {
-        print(index)
+func compareNext(_ arrayOfNumbers: [Int]) {
+    for index in 0...arrayOfNumbers.count - 1 {
+       
+        firstNumber = arrayOfNumbers[index]
+        
+        if index < arrayOfNumbers.count - 1 {
+            print(index)
+            nextNumber = arrayOfNumbers[index + 1]
+        } else if index == arrayOfNumbers.count - 1 {
+            nextNumber = arrayOfNumbers[0]
+        }
+        
+        print("First Number: \(firstNumber)")
+        print("Next Number: \(nextNumber)")
+        
+        if firstNumber == nextNumber {
+            print("Match")
+        } else {
+            print("No Match")
+        }
     }
 }
 
 // Solve the Captcha
 solveCaptcha(input: captchaInput)
+
+
